@@ -6,7 +6,7 @@ var ControlManager = TabManager || {};
 ControlManager = (function()
 {
     return{
-        hideControl: function (formContext,controlName)
+        hide: function (formContext,controlName)
         {
             let control = formContext.getControl(controlName);
             console.log(control);
@@ -15,14 +15,31 @@ ControlManager = (function()
                 control.setVisible(false);
             }
         },
-        setDisableControl : function(formContext,controlName,disable)
+        setDisabled : function(formContext,controlName,disable)
         {
             let control = formContext.getControl(controlName);
             if(control!=null)
             {
                 control.setDisabled(disable);
             }
+        },
+        addCustomView : function(formContext,controlName,viewid,entityLogicaName,viewName,fetchXml,layoutXml,defaultView=false)
+        {
+            let control = formContext.getControl(controlName);
+            if(control!=null)
+            {
+                control.addCustomView(viewid,entityLogicaName,viewName,fetchXml,layoutXml,defaultView);
+            }
+        },
+        addCustomFilter: function(formContext,controlName,filter,entityLogicaName)
+        {
+            let control = formContext.getControl(controlName);
+            if(control!=null)
+            {
+                control.addCustomFilter(filter,entityLogicaName);
+            }
         }
+        //setLookupFilter : function(formContext,controlName,)
     }
     
 })();
@@ -42,7 +59,7 @@ var TabManager = TabManager || {};
 TabManager = (function()
 {
     return{
-        setTabVisible : function (formContext,tabName,visible)
+        setVisible : function (formContext,tabName,visible)
         {
             let creditTab = formContext.ui.tabs.get(tabName);
             console.log(creditTab);
@@ -60,12 +77,35 @@ var JunkyardDog = JunkyardDog || {};
 
 JunkyardDog.jdog_agreement = (function()
 {
+    let filterCreditAuto = "";
+    let fetchXmlCreditid=`<fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+            <entity name="jdog_credit">
+              <attribute name="jdog_creditid" />
+              <attribute name="jdog_name" />
+              <attribute name="createdon" />
+              <order attribute="jdog_name" descending="false" />
+              <filter type="and">
+                <condition attribute="jdog_name" operator="not-null" />
+              </filter>
+              <link-entity name="jdog_jdog_credit_jdog_auto" from="jdog_creditid" to="jdog_creditid" visible="false" intersect="true">
+                <link-entity name="jdog_auto" from="jdog_autoid" to="jdog_autoid" alias="ae">
+                    @filter
+                </link-entity>
+              </link-entity>
+            </entity>
+          </fetch>`;
+    
+    let layoutXmlCreditid = `<grid name="resultset" object="4230" jump="name" select="1" icon="1" preview="1">
+    <row name="result" id="userqueryid">
+    <cell name="jdog_name" width="300" />
+    <cell name="createdon" width="100" />
+    </row></grid>`;
     function disableCalcCredControls(formContext,disable)
     {
-        ControlManager.setDisableControl(formContext,"jdog_creditperiod",disable);
-        ControlManager.setDisableControl(formContext,"jdog_creditamount",disable);
-        ControlManager.setDisableControl(formContext,"jdog_fullcreditamount",disable);
-        ControlManager.setDisableControl(formContext,"jdog_initialfee",disable);
+        ControlManager.setDisabled(formContext,"jdog_creditperiod",disable);
+        ControlManager.setDisabled(formContext,"jdog_creditamount",disable);
+        ControlManager.setDisabled(formContext,"jdog_fullcreditamount",disable);
+        ControlManager.setDisabled(formContext,"jdog_initialfee",disable);
     }
     function checkContactAndAuto(context)
     {
@@ -87,27 +127,40 @@ JunkyardDog.jdog_agreement = (function()
         if(checkContactAndAuto(context))
         {
             
-            TabManager.setTabVisible(formContext,"tabCredit",true);
-            ControlManager.setDisableControl(formContext,"jdog_creditid",false);
+            TabManager.setVisible(formContext,"tabCredit",true);
+            ControlManager.setDisabled(formContext,"jdog_creditid",false);
         }else
         {
-            ControlManager.setDisableControl(formContext,"jdog_creditid",true);
+            ControlManager.setDisabled(formContext,"jdog_creditid",true);
         }
         
         
     }
 
-    var contactOnChange = function(context)
+    JunkyardDog.contactOnChange = function(context)
     {
         showTabCredit(context);
-        
+
     }
     
-    var autoOnChange = function(context)
+    JunkyardDog.autoOnChange = function(context)
     {
+        let formContext = context.getFormContext();
         showTabCredit(context);
+        let autoAttr = formContext.getAttribute("jdog_auto");
+        let autoValue = autoAttr.getValue();
+        if(autoValue!=null)
+        {
+            filterCreditAuto = `<filter type="and">
+                                    <condition attribute="jdog_autoid" operator="eq" value="${autoValue[0].id}" />
+                                </filter>`;
+            fetchXml = fetchXmlCreditid.replace("@filter",filterCreditAuto);
+            ControlManager.addCustomView(formContext,"jdog_creditid","{70E2F896-09E1-4634-AA2D-2DD10D43424D}","jdog_credit","Особое представление",fetchXml,layoutXmlCreditid,true);
+            
+        }
     }
-    var creditidOnChange = function(context)
+    
+    JunkyardDog.creditidOnChange = function(context)
     {
         let formContext = context.getFormContext();
         let creditAttr= formContext.getAttribute("jdog_creditid");
@@ -130,18 +183,21 @@ JunkyardDog.jdog_agreement = (function()
         {
             console.log(context);
             let formContext = context.getFormContext();
-
-            TabManager.setTabVisible(formContext,"tabCredit",false);
-            ControlManager.hideControl(formContext,"jdog_summa");
-            ControlManager.hideControl(formContext,"jdog_fact");
-            ControlManager.setDisableControl(formContext,"jdog_creditid",true);
+            TabManager.setVisible(formContext,"tabCredit",false);
+            ControlManager.hide(formContext,"jdog_summa");
+            ControlManager.hide(formContext,"jdog_fact");
+            ControlManager.setDisabled(formContext,"jdog_creditid",true);
             disableCalcCredControls(formContext,true);
             let contactAttr = formContext.getAttribute("jdog_contact");
             let autoAttr = formContext.getAttribute("jdog_auto");
             let creditAttr = formContext.getAttribute("jdog_creditid");
-            contactAttr.addOnChange(contactOnChange);
-            autoAttr.addOnChange(autoOnChange);
-            creditAttr.addOnChange(creditidOnChange);
+            ControlManager.addCustomView(formContext,"jdog_creditid","{70E2F896-09E1-4634-AA2D-2DD10D43424D}","jdog_credit","Особое представление",fetchXmlCreditid,layoutXmlCreditid,true);
+            filterCreditAuto = `<filter type="and">
+                                    <condition attribute="jdog_autoid" operator="eq" value="{831F7011-C8F9-EB11-94EF-000D3A29AC6D}" />
+                                </filter>`;  
+            contactAttr.addOnChange(JunkyardDog.contactOnChange);
+            autoAttr.addOnChange(JunkyardDog.autoOnChange);
+            creditAttr.addOnChange(JunkyardDog.creditidOnChange);
         }
     }
 })();
