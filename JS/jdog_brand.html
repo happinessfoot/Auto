@@ -1,0 +1,88 @@
+<html>
+    <head>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://crm4shamsutdinov.crm4.dynamics.com//WebResources/jdog_brand_style.css">
+    <script src="ClientGlobalContext.js.aspx" type="text/javascript" ></script>
+    <script  src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    
+    <script>
+        $(document).ready(function()
+{
+    "use strict";
+    var oParameters = GetGlobalContext().getQueryStringParameters();
+    var sParentCustId = oParameters.id;
+    fnOnPageLoad(sParentCustId)
+});
+function fnOnPageLoad(sParentCustId)
+{
+    console.log("sParentCustId:"+sParentCustId);
+    "use strict";
+    var conFetchXML = `<fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+  <entity name="jdog_auto" distinct="true">
+    <filter type="and">
+      <condition attribute="jdog_name" operator="not-null" />
+      <condition attribute="jdog_brandid" operator="eq" uiname="Марка 1" uitype="jdog_brand" value="{07CA8B3A-AFF6-EB11-94EF-00224881A0DB}" />
+    </filter>
+    <link-entity name="jdog_jdog_credit_jdog_auto" from="jdog_autoid" to="jdog_autoid" visible="false" intersect="true">
+      <link-entity name="jdog_credit" from="jdog_creditid" to="jdog_creditid" alias="ag">  
+          <attribute name="jdog_name" alias="creditname"/>
+          <attribute name="jdog_creditid" alias="creditid"/>
+          <attribute name="jdog_creditperiod" alias="creditperiod"/>
+         <filter type="and">
+          <condition attribute="jdog_name" operator="not-null" />
+        </filter>
+      </link-entity>
+    </link-entity>
+    <link-entity name="jdog_model" from="jdog_modelid" to="jdog_modelid" alias="jm"> 
+        <attribute name="jdog_name" alias="modelname"/>
+        <attribute name="jdog_modelid" alias="modelid"/>
+   </link-entity>
+  </entity>
+</fetch>`;
+  path = "?fetchXml="+conFetchXML;
+  Xrm.WebApi.retrieveMultipleRecords("jdog_auto",path).then(function(result)
+  {
+      "use strict";
+      var oResult = result.entities;
+      if(oResult!=null)
+      {
+          $('#brandTable').DataTable({
+              data:oResult,
+              columns:[
+                    {data:'creditname',"fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                            console.log(oData.credit_id);
+                            console.log(sData);
+                            console.log(nTd);
+                            $(nTd).html("<a href=https://crm4shamsutdinov.crm4.dynamics.com/main.aspx?app=d365default&forceUCI=1&pagetype=entityrecord&etn=jdog_credit&id="+oData.creditid+">"+oData.creditname+"</a>");
+                        }
+                    },
+                    {data:'creditname',
+                        "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                            console.log(oData.credit_id);
+                            console.log(sData);
+                            console.log(nTd);
+                            $(nTd).html("<a href=https://crm4shamsutdinov.crm4.dynamics.com/main.aspx?app=d365default&forceUCI=1&pagetype=entityrecord&etn=jdog_model&id="+oData.modelid+">"+oData.modelname+"</a>");
+                        }
+                    },
+                    {data: 'creditperiod',"defaultContent":"---"},
+              ]
+          });
+      }
+  });
+}
+    </script>
+    </head>
+    <body>
+        <table class="dynamics-font row-border" id='brandTable' width='100%'>
+            <thead>
+                <tr>
+                    <th>Кредитная программа</th>
+                    <th>Модель</th>
+                    <th>Срок кредита (Лет)</th>
+                </tr>
+            </thead>
+        </table>
+    </body>
+</html>
