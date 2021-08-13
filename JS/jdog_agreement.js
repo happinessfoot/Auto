@@ -154,29 +154,6 @@ JunkyardDog.jdog_agreement = (function()
         ControlManager.addCustomView(formContext,"jdog_creditid","{70E2F896-09E1-4634-AA2D-2DD10D43424D}","jdog_credit","Особое представление",fetchXml,layoutXmlCreditid,true);
             
     }
-    let autoOnChange = function(context)
-    {
-        let formContext = context.getFormContext();
-        showTabCredit(context);
-        let autoAttr = formContext.getAttribute("jdog_auto");
-        let autoValue = autoAttr.getValue();
-        if(autoValue!=null)
-        {
-            setFilterCredit(formContext,autoValue[0].id);
-        }
-    }
-    let onSave = function(context)
-    {
-        let saveEvent = context.getEventArgs();
-        let formContext = context.getFormContext();
-        if(!canSave)
-        {
-            alert(`Сохранение прервано!\n${lastErrorMsg}`)
-            console.log(saveEvent);
-            saveEvent.preventDefault();
-        }
-        
-    }
     function checkingAgreementDate(formContext)
     {
         let creditAttr= formContext.getAttribute("jdog_creditid");
@@ -210,6 +187,54 @@ JunkyardDog.jdog_agreement = (function()
             canSave = true;
         }
     }
+    let autoOnChange = function(context)
+    {
+        let formContext = context.getFormContext();
+        showTabCredit(context);
+        let autoAttr = formContext.getAttribute("jdog_auto");
+        let autoValue = autoAttr.getValue();
+        if(autoValue!=null)
+        {
+            setFilterCredit(formContext,autoValue[0].id);
+            let autoPromise = Xrm.WebApi.retrieveRecord("jdog_auto",autoValue[0].id,`?$select=jdog_used,jdog_amount&$expand=jdog_modelid($select=jdog_modelid,jdog_name)`);
+            let creditAmountAttr = formContext.getAttribute("jdog_creditamount")
+            autoPromise.then(function(autoResult)
+            {
+                if(autoResult.jdog_used)
+                {
+                    creditAmountAttr.setValue(autoResult.jdog_amount);
+                }
+                else
+                {
+                    let modelPromise = Xrm.WebApi.retrieveRecord("jdog_model",autoResult.jdog_modelid.jdog_modelid,`?$select=jdog_recommendedamount`);
+                    modelPromise.then(function(modelResult)
+                    {
+                        creditAmountAttr.setValue(modelResult.jdog_recommendedamount);
+                    },function(error)
+                    {
+                        console.error("error:"+error.message);
+                    });
+                }
+                return autoResult;
+            },function(error)
+            {
+                console.error("error:"+error.message);
+            });
+        }
+    }
+    let onSave = function(context)
+    {
+        let saveEvent = context.getEventArgs();
+        let formContext = context.getFormContext();
+        if(!canSave)
+        {
+            alert(`Сохранение прервано!\n${lastErrorMsg}`)
+            console.log(saveEvent);
+            saveEvent.preventDefault();
+        }
+        
+    }
+    
     let dateOnChange = function(context)
     {
         let formContext = context.getFormContext();

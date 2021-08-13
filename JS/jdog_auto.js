@@ -64,7 +64,7 @@ JunkyardDog.jdog_auto= (function()
                 let formContext = context.getFormContext();
                 console.log(context);
                 let usedAttr = formContext.getAttribute("jdog_used");
-                setVisibleUsedControls(formContext,false)
+                setVisibleUsedControls(formContext,usedAttr.getValue())
                 usedAttr.addOnChange(usedOnChange);
             }
     }
