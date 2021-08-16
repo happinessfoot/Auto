@@ -20,6 +20,7 @@ namespace Auto.Plugins.jdog_agreement
             {
                 JdogAgreementService jdogAgreementService = new JdogAgreementService(Service, TraceService);
                 jdogAgreementService.SetFirstDateAgreement(targetAgreement);
+               
             }
             catch(Exception ex)
             {

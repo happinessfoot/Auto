@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Auto.Common.Commands;
 using System.Configuration;
 using Auto.Plugins.jdog_agreement.Handlers;
+using Auto.Plugins.jdog_invoice.Handlers;
 
 namespace Auto.ConsoleApp
 {
@@ -28,12 +29,15 @@ namespace Auto.ConsoleApp
                 System.Console.WriteLine(client.LastCrmException);
             }
             IOrganizationService service = (IOrganizationService)client;
-            //Entity invoice = service.Retrieve("jdog_invoice", Guid.Parse("F1B52E61-74FE-EB11-94EF-000D3A206C55"), new ColumnSet(true));
+            Entity invoice = service.Retrieve("jdog_invoice", Guid.Parse("A06AEBAC-94FE-EB11-94EF-000D3A206C55"), new ColumnSet("jdog_fact"));
+            invoice["jdog_fact"] = true;
+            JdogInvoiceService jdogInvoiceService = new JdogInvoiceService(service, new TraceServiceConsole());
+            jdogInvoiceService.CalculateAmounCredit(invoice);
             //SetInvoiceTypeCommand setInvoiceTypeCommand = new SetInvoiceTypeCommand();
             //setInvoiceTypeCommand.Execute(invoice);
-            Entity entity = service.Retrieve("contact", Guid.Parse("F8428F3E-E5F6-EB11-94EF-00224881A0DB"), new ColumnSet("contactid"));
-            JdogAgreementService contactService = new JdogAgreementService(service, new TraceServiceConsole());
-            contactService.SetFirstDateAgreement(entity);
+            //Entity entity = service.Retrieve("contact", Guid.Parse("F8428F3E-E5F6-EB11-94EF-00224881A0DB"), new ColumnSet("contactid"));
+            //JdogAgreementService contactService = new JdogAgreementService(service, new TraceServiceConsole());
+            //contactService.SetFirstDateAgreement(entity);
 
             //service.Update(invoiceUpdate);
 

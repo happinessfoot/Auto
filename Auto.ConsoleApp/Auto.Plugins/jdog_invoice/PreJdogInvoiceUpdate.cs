@@ -1,33 +1,31 @@
 ﻿using Auto.Plugins.Base;
+using Auto.Plugins.jdog_invoice.Handlers;
 using Microsoft.Xrm.Sdk;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Auto.Plugins.jdog_invoice.Handlers;
-using Auto.Common.Entities;
 
 namespace Auto.Plugins.jdog_invoice
 {
-    public sealed class PreJdogInvoiceCreate : PluginBase,IPlugin
+    public sealed class PreJdogInvoiceUpdate : PluginBase, IPlugin
     {
         public void Execute(IServiceProvider serviceProvider)
         {
             InitializeComponents(serviceProvider);
-
-            Entity targetInvoice = (Entity)PluginContext.InputParameters["Target"];
+            Entity targetInvoicement = (Entity)PluginContext.InputParameters["Target"];
             try
             {
-                JdogInvoiceService invoiceService = new JdogInvoiceService(Service, TraceService);
-                invoiceService.SetInvoiceType(targetInvoice);
-                invoiceService.AddPaidValue(targetInvoice);
+                JdogInvoiceService jdogInvoiceService = new JdogInvoiceService(Service, TraceService);
+                jdogInvoiceService.CalculateAmounCredit(targetInvoicement);
+                //jdogAgreementService.SetFirstDateAgreement(targetAgreement);
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new InvalidPluginExecutionException(ex.Message);
             }
-
         }
     }
 }

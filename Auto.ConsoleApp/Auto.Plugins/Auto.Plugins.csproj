@@ -72,6 +72,8 @@
     <Compile Include="jdog_agreement\PreJdogAgreementCreate.cs" />
     <Compile Include="jdog_invoice\Handlers\JdogInvoiceService.cs" />
     <Compile Include="jdog_invoice\PreJdogInvoiceCreate.cs" />
+    <Compile Include="jdog_invoice\PreJdogInvoiceDelete.cs" />
+    <Compile Include="jdog_invoice\PreJdogInvoiceUpdate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
