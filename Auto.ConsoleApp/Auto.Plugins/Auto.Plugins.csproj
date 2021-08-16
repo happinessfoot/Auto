@@ -70,6 +70,9 @@
     <Compile Include="Base\ServiceBase.cs" />
     <Compile Include="jdog_agreement\Handlers\JdogAgreementService.cs" />
     <Compile Include="jdog_agreement\PreJdogAgreementCreate.cs" />
+    <Compile Include="jdog_communication\Handlers\JdogCommunicationService.cs" />
+    <Compile Include="jdog_communication\PreJdogCommunicationCreate.cs" />
+    <Compile Include="jdog_communication\PreJdogCommunicationUpdate.cs" />
     <Compile Include="jdog_invoice\Handlers\JdogInvoiceService.cs" />
     <Compile Include="jdog_invoice\PreJdogInvoiceCreate.cs" />
     <Compile Include="jdog_invoice\PreJdogInvoiceDelete.cs" />

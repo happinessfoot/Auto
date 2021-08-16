@@ -21,7 +21,7 @@ namespace Auto.Plugins.jdog_invoice.Handlers
         {
             if (newFactSumma.Value > fullCreditAmount.Value)
             {
-                throw new Exception($"Сумма всех оплаченных счетов превысила полную стоимость кредита.");
+                throw new InvalidPluginExecutionException($"Сумма всех оплаченных счетов превысила полную стоимость кредита.");
             }
             else
             {
@@ -71,13 +71,13 @@ namespace Auto.Plugins.jdog_invoice.Handlers
                         }
                         catch(Exception ex)
                         {
-                            throw new Exception(ex.Message + $"\nПолная стоимость кредита:{fullCreditAmount.Value}\nСумма всех счетов (включая текущий):{newAmount.Value}\nСчет:{invoiceAmount.Value}");
+                            throw new InvalidPluginExecutionException(ex.Message + $"\nПолная стоимость кредита:{fullCreditAmount.Value}\nСумма всех счетов (включая текущий):{newAmount.Value}\nСчет:{invoiceAmount.Value}");
                         }
                         service.Update(agreementUpdate);
                     }
                     else
                     {
-                        throw new Exception($"Отсутствует сумма!");
+                        throw new InvalidPluginExecutionException($"Отсутствует сумма!");
                     }
                 }
             }
@@ -127,7 +127,7 @@ namespace Auto.Plugins.jdog_invoice.Handlers
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception(ex.Message + $"\nПолная стоимость кредита:{fullCreditAmount.Value}\nСумма всех счетов (включая текущий):{newAmount}");
+                        throw new InvalidPluginExecutionException(ex.Message + $"\nПолная стоимость кредита:{fullCreditAmount.Value}\nСумма всех счетов (включая текущий):{newAmount}");
                     }
                     service.Update(agreementUpdate);
                 }
