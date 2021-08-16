@@ -1,0 +1,11 @@
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Common\obj\Debug\Auto.Common.csproj.AssemblyReference.cache
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Common\obj\Debug\Auto.Common.csproj.CoreCompileInputs.cache
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Common\bin\Debug\Auto.Common.dll
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Common\bin\Debug\Auto.Common.pdb
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Common\bin\Debug\Microsoft.Crm.Sdk.Proxy.dll
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Common\bin\Debug\Microsoft.Xrm.Sdk.dll
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Common\bin\Debug\Microsoft.Crm.Sdk.Proxy.xml
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Common\bin\Debug\Microsoft.Xrm.Sdk.xml
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Common\obj\Debug\Auto.Common.csproj.CopyComplete
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Common\obj\Debug\Auto.Common.dll
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Common\obj\Debug\Auto.Common.pdb

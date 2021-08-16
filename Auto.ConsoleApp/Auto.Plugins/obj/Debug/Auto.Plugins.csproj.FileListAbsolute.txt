@@ -1,0 +1,9 @@
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Plugins\obj\Debug\Auto.Plugins.csproj.AssemblyReference.cache
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Plugins\obj\Debug\Auto.Plugins.csproj.CoreCompileInputs.cache
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Plugins\bin\Debug\Auto.Plugins.dll
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Plugins\bin\Debug\Auto.Plugins.pdb
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Plugins\bin\Debug\Auto.Common.dll
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Plugins\bin\Debug\Auto.Common.pdb
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Plugins\obj\Debug\Auto.Plugins.csproj.CopyComplete
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Plugins\obj\Debug\Auto.Plugins.dll
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Plugins\obj\Debug\Auto.Plugins.pdb
