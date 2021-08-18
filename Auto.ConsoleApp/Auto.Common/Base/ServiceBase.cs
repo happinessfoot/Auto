@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xrm.Sdk;
 
-namespace Auto.Plugins.Base
+namespace Auto.Common.Base
 {
     public abstract class ServiceBase
     {

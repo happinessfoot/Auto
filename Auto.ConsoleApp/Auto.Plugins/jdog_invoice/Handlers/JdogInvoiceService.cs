@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Auto.Common.Commands;
 using System.Windows.Input;
 using Auto.Common.Entities;
-using Auto.Plugins.Base;
+using Auto.Common.Base;
 using Microsoft.Xrm.Sdk.Query;
 
 using JdogAgreement = Auto.Common.Entities.jdog_agreement;

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Auto.ConsoleApp
+namespace Auto.Common
 {
     class TraceServiceConsole : ITracingService
     {

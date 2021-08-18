@@ -14,7 +14,7 @@ using Auto.Plugins.jdog_invoice.Handlers;
 using Auto.Common.Entities;
 using Auto.Plugins.jdog_communication.Handlers;
 
-namespace Auto.ConsoleApp
+namespace Auto.Common
 {
     class Program
     {

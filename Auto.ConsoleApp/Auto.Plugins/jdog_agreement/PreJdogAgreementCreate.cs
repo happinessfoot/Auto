@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Auto.Common;
-using Auto.Plugins.Base;
+using Auto.Common.Base;
 using Auto.Plugins.jdog_agreement.Handlers;
 
 namespace Auto.Plugins.jdog_agreement

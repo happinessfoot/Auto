@@ -9,3 +9,5 @@ E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Common\bin\Debug\Microsof
 E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Common\obj\Debug\Auto.Common.csproj.CopyComplete
 E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Common\obj\Debug\Auto.Common.dll
 E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Common\obj\Debug\Auto.Common.pdb
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Common\bin\Debug\Microsoft.Xrm.Sdk.Workflow.dll
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Common\bin\Debug\Microsoft.Xrm.Sdk.Workflow.xml

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auto.Common", "Auto.Common\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auto.Plugins", "Auto.Plugins\Auto.Plugins.csproj", "{7D077114-7D1B-4B96-9340-5D0DB64D2985}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auto.Workflows", "Auto.Workflows\Auto.Workflows.csproj", "{66754982-B7BF-4DCF-98CD-C7E717F893EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{7D077114-7D1B-4B96-9340-5D0DB64D2985}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D077114-7D1B-4B96-9340-5D0DB64D2985}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D077114-7D1B-4B96-9340-5D0DB64D2985}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66754982-B7BF-4DCF-98CD-C7E717F893EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66754982-B7BF-4DCF-98CD-C7E717F893EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66754982-B7BF-4DCF-98CD-C7E717F893EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66754982-B7BF-4DCF-98CD-C7E717F893EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

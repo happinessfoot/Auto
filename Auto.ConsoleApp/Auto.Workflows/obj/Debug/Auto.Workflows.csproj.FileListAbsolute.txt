@@ -1,0 +1,9 @@
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Workflows\bin\Debug\Auto.Workflows.dll
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Workflows\bin\Debug\Auto.Workflows.pdb
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Workflows\bin\Debug\Auto.Common.dll
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Workflows\bin\Debug\Auto.Common.pdb
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Workflows\obj\Debug\Auto.Workflows.csproj.AssemblyReference.cache
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Workflows\obj\Debug\Auto.Workflows.csproj.CoreCompileInputs.cache
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Workflows\obj\Debug\Auto.Workflows.csproj.CopyComplete
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Workflows\obj\Debug\Auto.Workflows.dll
+E:\Навикон\Курсы\Auto\Auto.ConsoleApp\Auto.Workflows\obj\Debug\Auto.Workflows.pdb

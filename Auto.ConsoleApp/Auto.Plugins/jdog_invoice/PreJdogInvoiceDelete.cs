@@ -1,4 +1,4 @@
-﻿using Auto.Plugins.Base;
+﻿using Auto.Common.Base;
 using Auto.Plugins.jdog_invoice.Handlers;
 using Microsoft.Xrm.Sdk;
 using System;

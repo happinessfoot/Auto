@@ -1,4 +1,4 @@
-﻿using Auto.Plugins.Base;
+﻿using Auto.Common.Base;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 using System;
